@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubre por qué tu negocio no está creciendo en el mundo digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --paper:#FAF7F1; --ink:#1C2438; --ink-soft:#4A5268; --navy:#22304E; --navy-deep:#182238;
+            --gold:#C08A34; --gold-soft:#EADFC7; --sage:#5F7A5E; --sage-soft:#E3EAE0; --line:#DAD2C0; --card:#FFFFFF;
+        }
+        *{box-sizing:border-box;}
+        body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter', sans-serif; line-height:1.6;}
+        .wrap{max-width:760px; margin:0 auto; padding:0 20px 80px;}
+
+        header.hero{background:linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%); color:#F4F0E6; padding:56px 20px 42px; position:relative; overflow:hidden;}
+        .hero-inner{max-width:760px; margin:0 auto; position:relative;}
+        .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin:0 0 16px;}
+        h1{font-family:'Fraunces', serif; font-weight:600; font-size:clamp(26px, 4.4vw, 40px); line-height:1.16; margin:0 0 14px;}
+        h1 em{font-style:italic; color:var(--gold);}
+        .hero-sub{max-width:54ch; color:#CBD1DE; font-size:15.5px; margin:0 0 22px;}
+        .hero-meta{display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--gold-soft);}
+
+        .quiz-card{background:var(--card); margin-top:-1px; border-radius:0 0 14px 14px; box-shadow:0 20px 50px -30px rgba(24,34,56,0.35);}
+        .progress-bar{height:4px; background:var(--sage-soft); position:sticky; top:0; z-index:10;}
+        .progress-fill{height:100%; background:var(--gold); width:0%; transition:width .3s ease;}
+
+        #quizForm{padding:36px 24px 8px;}
+        .level-group{margin-bottom:34px;}
+        .level-tag{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); font-weight:700; margin-bottom:14px;}
+        fieldset{border:none; padding:0; margin:0 0 22px;}
+        legend{font-family:'Fraunces', serif; font-size:16.5px; font-weight:500; color:var(--ink); margin-bottom:12px;}
+        .options{display:flex; flex-direction:column; gap:8px;}
+        .option{display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:8px; padding:12px 14px; cursor:pointer;}
+        .option:hover{border-color:var(--gold); background:#FBF7EE;}
+        .option.checked{border-color:var(--gold); background:#FBF3E2;}
+        .submit-row{padding:20px 24px 40px;}
+        #submitBtn{width:100%; background:var(--navy); color:white; border:none; padding:16px; border-radius:8px; font-weight:600; cursor:pointer;}
+        #submitBtn:disabled{opacity:0.4; cursor:not-allowed;}
+
+        #gateView, #resultView{display:none; padding:40px 24px;}
+        .gate-title{font-family:'Fraunces', serif; font-size:28px; text-align:center; margin-bottom:8px;}
+        .gate-sub{text-align:center; color:var(--ink-soft); margin-bottom:24px;}
+        .gate-form label{display:block; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage); font-weight:700; margin:16px 0 6px;}
+        .gate-form input{width:100%; padding:12px; border:1px solid var(--line); border-radius:8px; font-size:15px;}
+        .help-text{font-size:13px; color:#666; margin-top:4px;}
+        #unlockBtn{width:100%; background:var(--navy); color:white; border:none; padding:16px; border-radius:8px; font-weight:600; cursor:pointer; margin-top:8px;}
+        .privacy-note{text-align:center; font-size:12.5px; color:var(--ink-soft); margin-top:16px; font-style:italic;}
+
+        .estimate-note{font-size:13px; color:var(--ink-soft); font-style:italic; text-align:center; margin-bottom:20px;}
+        .result-title{font-family:'Fraunces', serif; font-size:clamp(24px,4vw,32px); font-weight:600; margin:0 0 8px;}
+        .result-label{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage); font-weight:700; margin-bottom:8px;}
+        .result-block{margin-bottom:26px;}
+        .blind-spot-card{background:var(--gold-soft); border-left:4px solid var(--gold); padding:18px; border-radius:8px; margin:20px 0;}
+        .next-card{background:var(--paper); border:1px solid var(--line); padding:20px; border-radius:10px; margin:20px 0;}
+        .cta-box{background:var(--navy); color:white; padding:32px 24px; border-radius:12px; text-align:center; margin-top:20px;}
+        .cta-button{background:var(--gold); color:var(--navy-deep); padding:14px 32px; border-radius:8px; text-decoration:none; font-weight:700; display:inline-block; margin-top:12px;}
+        .signoff{text-align:center; margin-top:32px; font-size:12.5px; color:var(--ink-soft);}
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="hero-inner">
+        <p class="eyebrow">Andre Marketing — Test Gratuito</p>
+        <h1>Descubre qué está frenando el <em>crecimiento digital de tu negocio</em></h1>
+        <p class="hero-sub">En menos de 60 segundos descubre dónde está hoy tu negocio y cuál debería ser tu siguiente paso para crecer.</p>
+        <div class="hero-meta">
+            <span>⏱ 60 segundos</span>
+            <span>💸 100% gratuito</span>
+            <span>📩 Resultado al instante</span>
+        </div>
+    </div>
+</header>
+
+<div class="wrap">
+    <div class="quiz-card">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+        <form id="quizForm">
+            <div class="level-group">
+                <div class="level-tag">Bloque 1</div>
+                <fieldset><legend>1. ¿Puedes explicar fácilmente qué hace diferente a tu negocio de la competencia?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q1" value="2"> Sí, lo tengo muy claro</label>
+                        <label class="option"><input type="radio" name="q1" value="1"> Más o menos</label>
+                        <label class="option"><input type="radio" name="q1" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>2. ¿Tienes claro quiénes son los clientes a los que realmente quieres vender?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q2" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q2" value="1"> Tengo una idea</label>
+                        <label class="option"><input type="radio" name="q2" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">Bloque 2</div>
+                <fieldset><legend>3. Si alguien busca tu negocio en Internet, ¿puede encontrar información actualizada sobre él?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q3" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q3" value="1"> Solo parcialmente</label>
+                        <label class="option"><input type="radio" name="q3" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>4. ¿Tus clientes tienen una forma fácil de contactarte por Internet (sitio web, redes sociales o WhatsApp Business)?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q4" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q4" value="1"> Solo algunas veces</label>
+                        <label class="option"><input type="radio" name="q4" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">Bloque 3</div>
+                <fieldset><legend>5. Antes de comprarte, ¿un cliente puede ver opiniones, trabajos realizados o experiencias de otros clientes?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q5" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q5" value="1"> Algunas</label>
+                        <label class="option"><input type="radio" name="q5" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>6. ¿Crees que una persona que no te conoce confiaría en comprarte solo viendo tu presencia en Internet?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q6" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q6" value="1"> Tal vez</label>
+                        <label class="option"><input type="radio" name="q6" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">Bloque 4</div>
+                <fieldset><legend>7. ¿Publicas contenido o haces acciones para atraer nuevos clientes de forma constante?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q7" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q7" value="1"> Algunas veces</label>
+                        <label class="option"><input type="radio" name="q7" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>8. ¿Esas acciones generan consultas o nuevos clientes con frecuencia?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q8" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q8" value="1"> Algunas veces</label>
+                        <label class="option"><input type="radio" name="q8" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">Bloque 5</div>
+                <fieldset><legend>9. Cuando una persona muestra interés en tu negocio, ¿tienes un proceso para hacerle seguimiento hasta intentar cerrar la venta?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q9" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q9" value="1"> A veces</label>
+                        <label class="option"><input type="radio" name="q9" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>10. ¿Sabes aproximadamente cuántas personas interesadas terminan convirtiéndose en clientes?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q10" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q10" value="1"> Tengo una idea</label>
+                        <label class="option"><input type="radio" name="q10" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">Bloque 6</div>
+                <fieldset><legend>11. ¿Revisas regularmente los resultados de tu negocio para tomar decisiones (ventas, clientes o ingresos)?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q11" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q11" value="1"> Algunas veces</label>
+                        <label class="option"><input type="radio" name="q11" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>12. ¿Utilizas herramientas o publicidad para ayudarte a vender más sin depender solo del voz a voz?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q12" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q12" value="1"> Estoy comenzando</label>
+                        <label class="option"><input type="radio" name="q12" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">Bloque 7</div>
+                <fieldset><legend>13. ¿Tu negocio puede seguir funcionando aunque tú no estés presente todo el tiempo?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q13" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q13" value="1"> Parcialmente</label>
+                        <label class="option"><input type="radio" name="q13" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>14. ¿Actualmente estás buscando crecer hacia nuevos mercados, nuevas ciudades o nuevos tipos de clientes?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q14" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q14" value="1"> Lo estoy planeando</label>
+                        <label class="option"><input type="radio" name="q14" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="submit-row">
+                <button type="submit" id="submitBtn" disabled>Ver mi resultado</button>
+            </div>
+        </form>
+
+        <!-- Captura -->
+        <div id="gateView">
+            <h2 class="gate-title">Tu diagnóstico está listo.</h2>
+            <p class="gate-sub">Dime a dónde te lo envío y lo desbloqueo al instante.</p>
+            <form id="gateForm" class="gate-form">
+                <label>Nombre</label>
+                <input type="text" id="gateName" required>
+                <label>Correo electrónico</label>
+                <input type="email" id="gateEmail" required>
+                <label>WhatsApp (opcional)</label>
+                <input type="tel" id="gatePhone" placeholder="+57 300 123 4567">
+                <p class="help-text">Incluye el código de tu país</p>
+                <button type="submit" id="unlockBtn">Ver mi diagnóstico</button>
+                <p class="privacy-note">Cero spam, puedes salirte cuando quieras.</p>
+            </form>
+        </div>
+
+        <!-- Resultado -->
+        <div id="resultView">
+            <p class="estimate-note">Este resultado es una primera estimación gratuita basada en tus respuestas.</p>
+            <h2 class="result-title" id="resultTitle"></h2>
+            <div class="result-block">
+                <div class="result-label">¿Qué significa?</div>
+                <p id="resultMeaning"></p>
+            </div>
+            <div class="blind-spot-card">
+                <div class="result-label">🎯 Tu prioridad hoy</div>
+                <p id="priorityText"></p>
+            </div>
+            <div class="next-card">
+                <div class="result-label">🚀 ¿Qué sigue?</div>
+                <p id="nextDesc"></p>
+            </div>
+            <div class="cta-box">
+                <p class="cta-title">¿Quieres una orientación personalizada?</p>
+                <p>En una sesión estratégica gratuita de 30 minutos revisaremos tu resultado, conoceremos tus objetivos y conversaremos sobre qué debería priorizar tu negocio para avanzar.</p>
+                <a href="https://calendar.app.google/oR9yg9vboBngGbhi9" target="_blank" class="cta-button">Agendar mi sesión estratégica</a>
+            </div>
+            <p class="signoff">Andrea Espitia — Acompañamiento estratégico para el crecimiento digital de negocios</p>
+        </div>
+    </div>
+</div>
+
+<script>
+const LEVELS = [
+  {emoji:"🌱",title:"Tu negocio está construyendo sus fundamentos",meaning:"Estás en la etapa de definir qué te hace diferente y a quién le quieres vender.",next:"Una vez tengas esto claro, podrás crear o fortalecer tu presencia digital para que tus clientes te encuentren."},
+  {emoji:"🚀",title:"Tu negocio está construyendo su presencia digital",meaning:"Ya tienes claridad de tu negocio. Ahora toca lograr que te encuentren y te puedan contactar fácilmente.",next:"Una vez te encuentren fácilmente, podrás trabajar en generar la confianza necesaria para que se animen a comprarte."},
+  {emoji:"⭐",title:"Tu negocio está construyendo la confianza de sus clientes",meaning:"Ya te encuentran. Ahora toca mostrar evidencia de que cumples lo que prometes.",next:"Una vez generes confianza, podrás enfocarte en atraer más personas de forma constante."},
+  {emoji:"📢",title:"Tu negocio está construyendo su visibilidad",meaning:"Ya generas confianza. Ahora toca llegar a más personas de forma constante.",next:"Una vez tengas visibilidad constante, podrás construir un proceso claro para convertir ese interés en ventas."},
+  {emoji:"💰",title:"Tu negocio está construyendo su proceso de ventas",meaning:"Ya generas interés. Ahora toca convertir ese interés en clientes reales.",next:"Una vez tengas un proceso de ventas claro, podrás enfocarte en medir resultados y crecer de forma más inteligente."},
+  {emoji:"📈",title:"Tu negocio está construyendo su capacidad de crecer",meaning:"Ya vendes de forma organizada. Ahora toca medir y usar herramientas para crecer sin depender solo de tu esfuerzo.",next:"Una vez tengas un crecimiento más controlado, podrás pensar en expandir tu negocio a nuevos mercados."},
+  {emoji:"🌎",title:"Tu negocio está listo para expandirse",meaning:"Tu negocio ya funciona como un sistema. Ahora toca decidir hacia dónde creces.",next:"Tu negocio ya tiene bases sólidas. El siguiente paso es diseñar, junto conmigo, un plan concreto de expansión."}
+];
+
+const PRIORITY = [
+  {onlyFirst:"Necesitas tener más claro qué te hace diferente frente a tu competencia.",onlySecond:"Necesitas tener más claro a quién le quieres vender.",both:"Necesitas tener claro a quién le vendes y por qué deberían elegirte a ti."},
+  {onlyFirst:"Necesitas que tu negocio sea fácil de encontrar cuando alguien lo busque en Internet.",onlySecond:"Necesitas que tus clientes tengan una forma fácil y directa de contactarte.",both:"Necesitas que tu negocio pueda encontrarse y contactarse fácilmente en Internet."},
+  {onlyFirst:"Necesitas mostrar evidencia real de tu trabajo (opiniones, casos o resultados).",onlySecond:"Necesitas que tu presencia digital transmita más confianza a alguien que no te conoce.",both:"Necesitas mostrar evidencia de tu trabajo y reforzar la confianza que transmite tu presencia digital."},
+  {onlyFirst:"Necesitas generar contenido o acciones de forma más constante para atraer clientes.",onlySecond:"Necesitas que esas acciones generen consultas o clientes con más frecuencia.",both:"Necesitas ser más constante y lograr que tus acciones generen consultas reales."},
+  {onlyFirst:"Necesitas un proceso claro para dar seguimiento a las personas interesadas.",onlySecond:"Necesitas saber qué porcentaje de interesados terminan convirtiéndose en clientes.",both:"Necesitas un proceso de seguimiento y conocer tu tasa de conversión."},
+  {onlyFirst:"Necesitas revisar tus resultados con más regularidad para tomar mejores decisiones.",onlySecond:"Necesitas apoyarte en herramientas o publicidad para vender más sin depender solo del voz a voz.",both:"Necesitas medir resultados regularmente y usar herramientas para crecer."},
+  {onlyFirst:"Necesitas que tu negocio pueda funcionar sin que tú estés presente todo el tiempo.",onlySecond:"Necesitas definir hacia dónde quieres expandir tu negocio.",both:"Necesitas reducir tu dependencia diaria y definir un plan de expansión."}
+];
+
+const PASS_THRESHOLD=2;
+const LEVEL_GROUPS=[["q1","q2"],["q3","q4"],["q5","q6"],["q7","q8"],["q9","q10"],["q11","q12"],["q13","q14"]];
+let resultData=null;
+
+function updateProgress(){
+    const answered=document.querySelectorAll('#quizForm input[type="radio"]:checked').length;
+    document.getElementById("progressFill").style.width=Math.round((answered/14)*100)+"%";
+    document.getElementById("submitBtn").disabled=answered<14;
+}
+
+function getPriorityText(levelIndex,s1,s2){
+    const p=PRIORITY[levelIndex];
+    if(s1<2&&s2<2)return p.both;
+    if(s1<=s2)return p.onlyFirst;
+    return p.onlySecond;
+}
+
+function renderResult(levelIndex,priorityText){
+    const level=LEVELS[levelIndex];
+    document.getElementById("resultTitle").textContent=level.emoji+" "+level.title;
+    document.getElementById("resultMeaning").textContent=level.meaning;
+    document.getElementById("priorityText").textContent=priorityText;
+    document.getElementById("nextDesc").textContent=level.next;
+    document.getElementById("quizForm").style.display="none";
+    document.getElementById("gateView").style.display="none";
+    document.getElementById("resultView").style.display="block";
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.querySelectorAll('#quizForm input[type="radio"]').forEach(radio=>{
+    radio.addEventListener("change",()=>{
+        const parent=radio.closest(".option");
+        parent.parentElement.querySelectorAll(".option").forEach(opt=>opt.classList.remove("checked"));
+        parent.classList.add("checked");
+        updateProgress();
+    });
+});
+
+document.getElementById("quizForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    const levelScores=LEVEL_GROUPS.map(pair=>{
+        const a=parseInt(document.querySelector(`input[name="${pair[0]}"]:checked`).value,10);
+        const b=parseInt(document.querySelector(`input[name="${pair[1]}"]:checked`).value,10);
+        return a+b;
+    });
+    let currentLevel=0;
+    for(let i=0;i<levelScores.length;i++){
+        if(levelScores[i]>=PASS_THRESHOLD)currentLevel=i;
+        else break;
+    }
+    const pair=LEVEL_GROUPS[currentLevel];
+    const s1=parseInt(document.querySelector(`input[name="${pair[0]}"]:checked`).value,10);
+    const s2=parseInt(document.querySelector(`input[name="${pair[1]}"]:checked`).value,10);
+    resultData={levelIndex:currentLevel,priorityText:getPriorityText(currentLevel,s1,s2)};
+    document.getElementById("quizForm").style.display="none";
+    document.getElementById("gateView").style.display="block";
+});
+
+document.getElementById("gateForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    const lead={
+        nombre:document.getElementById("gateName").value.trim(),
+        correo:document.getElementById("gateEmail").value.trim(),
+        whatsapp:document.getElementById("gatePhone").value.trim(),
+        nivel:resultData.levelIndex,
+        prioridad:resultData.priorityText
+    };
+    fetch("https://script.google.com/macros/s/AKfycbwS3VYHz4cNz1Eg3DFaOQl97C3h_NWDCigIamGYL0szMqY8PRzYPw7OZLIRswATp-XTtg/exec",{
+        method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(lead)
+    });
+    renderResult(resultData.levelIndex,resultData.priorityText);
+});
+
+updateProgress();
+</script>
+</body>
+</html>
