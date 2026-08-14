@@ -64,7 +64,7 @@
 
 <header class="hero">
     <div class="hero-inner">
-        <p class="eyebrow">Andre Marketing — Test Gratuito</p>
+        <p class="eyebrow">Andre Crecimiento Digital — Test Gratuito</p>
         <h1>Descubre qué está frenando el <em>crecimiento digital de tu negocio</em></h1>
         <p class="hero-sub">En menos de 60 segundos descubre dónde está hoy tu negocio y cuál debería ser tu siguiente paso para crecer.</p>
         <div class="hero-meta">
@@ -223,8 +223,8 @@
                 <label>WhatsApp (opcional)</label>
                 <input type="tel" id="gatePhone" placeholder="+57 300 123 4567">
                 <p class="help-text">Incluye el código de tu país</p>
-                <button type="submit" id="unlockBtn">Ver mi diagnóstico</button>
-                <p class="privacy-note">Cero spam, puedes salirte cuando quieras.</p>
+                <button type="submit" id="unlockBtn">Ver mi resultado</button>
+                <p class="privacy-note">Cero spam.</p>
             </form>
         </div>
 
@@ -249,7 +249,12 @@
                 <p>En una sesión estratégica gratuita de 30 minutos revisaremos tu resultado, conoceremos tus objetivos y conversaremos sobre qué debería priorizar tu negocio para avanzar.</p>
                 <a href="https://calendar.app.google/oR9yg9vboBngGbhi9" target="_blank" class="cta-button">Agendar mi sesión estratégica</a>
             </div>
-            <p class="signoff">Andrea Espitia — Acompañamiento estratégico para el crecimiento digital de negocios</p>
+            <!-- MENSAJE PARA REVISAR EL CORREO -->
+            <div class="email-reminder">
+                <p>📧 Revisa tu correo electrónico!!. Te envie un regalo que te puede ayudar con lo que más te está frenando hoy.</p>
+            </div>
+			
+			<p class="signoff">Andrea Espitia — Acompañamiento estratégico para el crecimiento digital de negocios</p>
         </div>
     </div>
 </div>
@@ -342,7 +347,7 @@ document.getElementById("gateForm").addEventListener("submit",function(e){
         nivel:resultData.levelIndex,
         prioridad:resultData.priorityText
     };
-    fetch("https://script.google.com/macros/s/AKfycbwS3VYHz4cNz1Eg3DFaOQl97C3h_NWDCigIamGYL0szMqY8PRzYPw7OZLIRswATp-XTtg/exec",{
+    fetch("https://script.google.com/macros/s/AKfycbwpWRmrPcxo2CelVy5vZ40ckRoXECibsz72je464X_hwdj7QLza6OdeLsbw-sMek0wXRw/exec",{
         method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(lead)
     });
     renderResult(resultData.levelIndex,resultData.priorityText);
