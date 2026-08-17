@@ -280,7 +280,9 @@ const PRIORITY = [
   {onlyFirst:"Necesitas que tu negocio pueda funcionar sin que tú estés presente todo el tiempo.",onlySecond:"Necesitas definir hacia dónde quieres expandir tu negocio.",both:"Necesitas reducir tu dependencia diaria y definir un plan de expansión."}
 ];
 
-const PASS_THRESHOLD=2;
+// Umbral para considerar un BLOQUE (nivel) completamente superado.
+// Cada pregunta vale máximo 2 puntos ("Sí"), así que 4 = las dos preguntas en "Sí".
+const PASS_THRESHOLD = 4;
 const LEVEL_GROUPS=[["q1","q2"],["q3","q4"],["q5","q6"],["q7","q8"],["q9","q10"],["q11","q12"],["q13","q14"]];
 let resultData=null;
 
@@ -318,24 +320,51 @@ document.querySelectorAll('#quizForm input[type="radio"]').forEach(radio=>{
     });
 });
 
-document.getElementById("quizForm").addEventListener("submit",function(e){
+
+document.getElementById("quizForm").addEventListener("submit", function(e){
     e.preventDefault();
-    const levelScores=LEVEL_GROUPS.map(pair=>{
-        const a=parseInt(document.querySelector(`input[name="${pair[0]}"]:checked`).value,10);
-        const b=parseInt(document.querySelector(`input[name="${pair[1]}"]:checked`).value,10);
-        return a+b;
-    });
-    let currentLevel=0;
-    for(let i=0;i<levelScores.length;i++){
-        if(levelScores[i]>=PASS_THRESHOLD)currentLevel=i;
-        else break;
+
+    // 1) Respuestas INDIVIDUALES (una por pregunta, q1..q14) -> esto es lo que se
+    //    guarda en la hoja "Respuestas Detalladas". No se usa para clasificar el nivel.
+    const respuestasIndividuales = [];
+    for (let i = 1; i <= 14; i++) {
+        respuestasIndividuales.push(
+            parseInt(document.querySelector(`input[name="q${i}"]:checked`).value, 10)
+        );
     }
-    const pair=LEVEL_GROUPS[currentLevel];
-    const s1=parseInt(document.querySelector(`input[name="${pair[0]}"]:checked`).value,10);
-    const s2=parseInt(document.querySelector(`input[name="${pair[1]}"]:checked`).value,10);
-    resultData={levelIndex:currentLevel,priorityText:getPriorityText(currentLevel,s1,s2)};
-    document.getElementById("quizForm").style.display="none";
-    document.getElementById("gateView").style.display="block";
+
+    // 2) Sumas POR BLOQUE (q1+q2, q3+q4, ...) -> esto se usa SOLO para calcular
+    //    en qué nivel está el negocio. Nunca se envía tal cual a la hoja.
+    const levelScores = LEVEL_GROUPS.map(pair => {
+        const a = parseInt(document.querySelector(`input[name="${pair[0]}"]:checked`).value, 10);
+        const b = parseInt(document.querySelector(`input[name="${pair[1]}"]:checked`).value, 10);
+        return a + b;
+    });
+
+    // 3) Nivel actual = el PRIMER bloque que NO llegó al puntaje máximo (4).
+    //    Si un bloque llega a 4 (las dos preguntas en "Sí"), ese bloque está
+    //    superado y se avanza a revisar el siguiente. Si todos los bloques
+    //    llegan a 4, el negocio queda en el último nivel ("listo para expandirse").
+    let currentLevel = levelScores.length - 1;
+    for (let i = 0; i < levelScores.length; i++) {
+        if (levelScores[i] < PASS_THRESHOLD) {
+            currentLevel = i;
+            break;
+        }
+    }
+
+    const pair = LEVEL_GROUPS[currentLevel];
+    const s1 = parseInt(document.querySelector(`input[name="${pair[0]}"]:checked`).value, 10);
+    const s2 = parseInt(document.querySelector(`input[name="${pair[1]}"]:checked`).value, 10);
+
+    resultData = {
+        levelIndex: currentLevel,
+        priorityText: getPriorityText(currentLevel, s1, s2),
+        respuestas: respuestasIndividuales   // 14 valores individuales, no las sumas
+    };
+
+    document.getElementById("quizForm").style.display = "none";
+    document.getElementById("gateView").style.display = "block";
 });
 
 document.getElementById("gateForm").addEventListener("submit",function(e){
@@ -345,9 +374,10 @@ document.getElementById("gateForm").addEventListener("submit",function(e){
         correo:document.getElementById("gateEmail").value.trim(),
         whatsapp:document.getElementById("gatePhone").value.trim(),
         nivel:resultData.levelIndex,
-        prioridad:resultData.priorityText
+        prioridad:resultData.priorityText,
+		respuestas: resultData.respuestas		
     };
-    fetch("https://script.google.com/macros/s/AKfycbwpWRmrPcxo2CelVy5vZ40ckRoXECibsz72je464X_hwdj7QLza6OdeLsbw-sMek0wXRw/exec",{
+    fetch("https://script.google.com/macros/s/AKfycby5DkCfxdz7wMVsfCHEcf9S8OtSkF7aNFhr7CgEWDm9X5eis909UsfZb8sdWVjYNgBGxw/exec",{
         method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(lead)
     });
     renderResult(resultData.levelIndex,resultData.priorityText);
