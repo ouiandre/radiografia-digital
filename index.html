@@ -310,8 +310,8 @@
 
       <section class="result-section closing">
         <p class="section-kicker">Esta Radiografía es solo una primera lectura</p>
-        <p>Las respuestas permiten observar algunas señales generales, pero no explican por sí solas por qué ocurre cada situación ni qué solución necesita tu negocio.</p>
-        <p>Un análisis más profundo requiere entender el negocio, sus objetivos, clientes, oferta, ecosistema digital, proceso comercial, datos y procesos.</p>
+        <p>La Radiografía permite observar señales generales sobre las 7 áreas evaluadas, pero no explica por sí sola por qué ocurre cada situación ni determina qué solución necesita un negocio.</p>
+        <p>Un análisis más profundo requiere comprender sus objetivos, clientes, oferta, ecosistema digital, proceso comercial, datos y procesos.</p>
         <p class="principle">Primero el negocio. Después la herramienta.</p>
         <p class="signoff">Andre Espitia · Crecimiento Digital</p>
       </section>
@@ -485,7 +485,13 @@ function renderResult(serverResult){
 
   document.getElementById("resultTitle").textContent = state.title;
   document.getElementById("resultScore").textContent = serverResult.total + " / 28 puntos";
-  document.getElementById("resultMeaning").innerHTML = state.text.map(t=>"<p>"+t+"</p>").join("");
+  document.getElementById("resultMeaning").innerHTML = (serverResult.total === 28
+    ? [
+        state.text[0],
+        "En esta primera lectura, las 7 áreas evaluadas alcanzan la puntuación máxima. Esto no significa que el negocio no tenga oportunidades de mejora, sino que no aparece una brecha prioritaria dentro de los aspectos evaluados por esta Radiografía."
+      ]
+    : state.text
+  ).map(t=>"<p>"+t+"</p>").join("");
 
   const radiography = document.getElementById("radiography");
   radiography.innerHTML = "";
