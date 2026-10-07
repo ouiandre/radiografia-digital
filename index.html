@@ -293,8 +293,8 @@
         <div class="radiography" id="radiography"></div>
       </section>
 
-      <section class="result-section priority-card">
-        <p class="section-kicker">Área prioritaria para fortalecer</p>
+      <section class="result-section priority-card" id="prioritySection">
+        <p class="section-kicker" id="priorityKicker">Área prioritaria para fortalecer</p>
         <h3 class="priority-name" id="priorityName"></h3>
         <div class="subhead">Qué muestran tus respuestas</div>
         <p id="priorityMeaning"></p>
@@ -302,7 +302,7 @@
         <p id="priorityFocus"></p>
       </section>
 
-      <section class="result-section">
+      <section class="result-section" id="resourcesSection">
         <p class="section-kicker">2 recursos para empezar</p>
         <p class="result-copy">Seleccioné estos recursos porque están relacionados con el área prioritaria que aparece en tus respuestas.</p>
         <div class="resources" id="resources"></div>
@@ -500,23 +500,37 @@ function renderResult(serverResult){
     radiography.appendChild(row);
   });
 
-  document.getElementById("priorityName").textContent = area.title;
-  document.getElementById("priorityMeaning").textContent = area.meaning;
-  document.getElementById("priorityFocus").textContent = area.focus;
-
+  const prioritySection = document.getElementById("prioritySection");
+  const resourcesSection = document.getElementById("resourcesSection");
   const resources = document.getElementById("resources");
-  resources.innerHTML = "";
-  area.resources.forEach(res=>{
-    const url = RESOURCE_URLS[res.n];
-    const card = document.createElement("article");
-    card.className = "resource-card";
-    card.innerHTML = `
-      <div class="resource-number">${res.n} · ${area.label}</div>
-      <div class="resource-title">${res.title}</div>
-      <div class="resource-desc">${res.desc}</div>
-      <a class="resource-button ${url ? "" : "disabled"}" href="${url || "#"}" ${url ? 'target="_blank" rel="noopener"' : 'aria-disabled="true"'}>${url ? "Ver recurso" : "Recurso en preparación"}</a>`;
-    resources.appendChild(card);
-  });
+
+  // Excepción V1 aprobada: con 28/28 no existe una brecha prioritaria.
+  if(serverResult.total === 28){
+    document.getElementById("priorityKicker").textContent = "No aparece una brecha prioritaria";
+    document.getElementById("priorityName").textContent = "Tus respuestas muestran una base sólida en las 7 áreas evaluadas";
+    document.getElementById("priorityMeaning").textContent = "En esta Radiografía todas las áreas alcanzan la puntuación máxima. Por eso, con la información disponible, no aparece una brecha específica que deba priorizarse sobre las demás.";
+    document.getElementById("priorityFocus").textContent = "Más que sumar herramientas por sumar, el siguiente paso puede ser revisar cómo estas bases se conectan con los objetivos actuales de tu negocio y dónde existen oportunidades concretas de optimización o crecimiento.";
+    resources.innerHTML = "";
+    resourcesSection.style.display = "none";
+  }else{
+    document.getElementById("priorityKicker").textContent = "Área prioritaria para fortalecer";
+    document.getElementById("priorityName").textContent = area.title;
+    document.getElementById("priorityMeaning").textContent = area.meaning;
+    document.getElementById("priorityFocus").textContent = area.focus;
+    resourcesSection.style.display = "block";
+    resources.innerHTML = "";
+    area.resources.forEach(res=>{
+      const url = RESOURCE_URLS[res.n];
+      const card = document.createElement("article");
+      card.className = "resource-card";
+      card.innerHTML = `
+        <div class="resource-number">${res.n} · ${area.label}</div>
+        <div class="resource-title">${res.title}</div>
+        <div class="resource-desc">${res.desc}</div>
+        <a class="resource-button ${url ? "" : "disabled"}" href="${url || "#"}" ${url ? 'target="_blank" rel="noopener"' : 'aria-disabled="true"'}>${url ? "Ver recurso" : "Recurso en preparación"}</a>`;
+      resources.appendChild(card);
+    });
+  }
 
   document.getElementById("quizForm").style.display = "none";
   document.getElementById("gateView").style.display = "none";
