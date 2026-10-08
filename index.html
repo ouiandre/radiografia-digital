@@ -89,6 +89,47 @@
       #quizForm,#gateView,#resultView{padding-left:18px;padding-right:18px}
       .progress-meta{padding-left:18px;padding-right:18px}
     }
+
+/* PRUEBA LOCAL: portada editorial. No modifica el motor del test. */
+header.hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#11100e;
+  padding:64px 20px 48px;
+}
+header.hero::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  inset:0 0 0 auto;
+  width:49%;
+  background-image:url('radiografia_escritorio_preview.webp');
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  opacity:.95;
+}
+header.hero::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(90deg,#11100e 0%,#11100e 37%,rgba(17,16,14,.94) 51%,rgba(17,16,14,.45) 77%,rgba(17,16,14,.15) 100%);
+}
+.hero-inner{max-width:800px;position:relative}
+.hero .intro-note{
+  box-shadow:0 16px 35px rgba(0,0,0,.28);
+  background:linear-gradient(125deg,#f6ebd8,#ead8bb);
+  border-color:#e2cfaf;
+}
+@media(max-width:640px){
+  header.hero{padding:44px 20px 36px}
+  header.hero::before{width:76%;opacity:.55;background-position:45% center}
+  header.hero::after{background:linear-gradient(90deg,rgba(17,16,14,.98) 0%,rgba(17,16,14,.88) 58%,rgba(17,16,14,.60) 100%)}
+  .hero .intro-note{padding:19px 20px}
+}
+
   </style>
 </head>
 <body>
