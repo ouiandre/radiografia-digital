@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radiografía Digital de tu Negocio | Andre Espitia</title>
+  <meta name="description" content="Responde 14 preguntas y obtén una primera lectura de qué tan preparado está hoy tu negocio para utilizar lo digital como palanca de crecimiento.">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#F5F2EB; --card:#F8F5EF; --bg-soft:#EDE5D6;
+      --ink:#11100E; --ink-soft:#5D5952;
+      --taupe:#9A6B3A; --taupe-soft:#D0AA78; --line:#CFC8BB;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:'Archivo',sans-serif;line-height:1.6}
+    .wrap{max-width:800px;margin:0 auto;padding:0 20px 80px}
+    header.hero{background:var(--ink);color:var(--paper);padding:56px 20px 42px}
+    .hero-inner{max-width:800px;margin:0 auto}
+    .eyebrow,.section-kicker{font-family:'Archivo',sans-serif;font-weight:500;color:var(--taupe);text-transform:uppercase;letter-spacing:.12em}
+    .eyebrow{font-size:12px;color:var(--taupe-soft);margin:0 0 14px;text-transform:none;letter-spacing:.04em}
+    h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(38px,5.4vw,58px);line-height:1.02;margin:0 0 20px;letter-spacing:-.025em}
+    h1 em{font-style:italic;color:var(--taupe-soft)}
+    .hero-sub{max-width:60ch;color:rgba(246,241,231,.88);font-size:16px;line-height:1.8;margin:0 0 24px}
+    .hero-meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--taupe-soft)}
+    .intro-note{background:#EFE3CE;border:1px solid #D8C6AA;padding:22px 24px;margin:28px 0 0;border-radius:1px;color:var(--ink)}
+    .intro-note strong{font-family:'Fraunces',serif;font-size:19px;color:var(--ink)}
+    .intro-note p{margin:7px 0 0;color:#514B43;font-size:14px;line-height:1.75}
+    .quiz-card{background:var(--card);border:1px solid var(--line);border-top:none;border-radius:0 0 4px 4px}
+    .progress-wrap{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line)}
+    .progress-meta{display:flex;justify-content:space-between;gap:12px;padding:10px 24px 8px;font-size:12.5px;color:var(--ink-soft)}
+    .progress-bar{height:4px;background:var(--bg-soft)}
+    .progress-fill{height:100%;background:var(--ink);width:0%;transition:width .3s ease}
+    #quizForm{padding:34px 24px 8px}
+    .level-group{margin-bottom:34px}
+    .level-tag{font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;color:var(--taupe);text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;padding-top:8px}
+    fieldset{border:none;padding:0;margin:0 0 22px}
+    legend{font-family:'Archivo',sans-serif;font-size:16px;font-weight:600;color:var(--ink);line-height:1.55;margin-bottom:14px}
+    .options{display:flex;flex-direction:column;gap:8px}
+    .option{display:flex;align-items:center;gap:12px;border:1px solid #CFC8BB;border-radius:0;padding:14px 16px;cursor:pointer;transition:.15s;background:transparent;font-size:14px}
+    .option:hover{border-color:#8F877A;background:#F1ECE3}.option.checked{border-color:var(--ink);background:#E9DECA}.option input{accent-color:#11100E}
+    .submit-row{padding:20px 0 40px}
+    button.primary{width:100%;background:var(--ink);color:var(--paper);border:1px solid var(--ink);padding:16px;border-radius:2px;font:600 15px 'Archivo',sans-serif;cursor:pointer;transition:.2s}
+    button.primary:hover:not(:disabled){background:transparent;color:var(--ink)}
+    button.primary:disabled{opacity:.42;cursor:not-allowed}
+    #gateView,#resultView{display:none;padding:40px 24px}
+    .gate-title,.result-title{font-family:'Fraunces',serif;font-weight:600}
+    .gate-title{font-size:29px;text-align:center;margin:0 0 8px}
+    .gate-sub{text-align:center;color:var(--ink-soft);margin:0 auto 24px;max-width:55ch}
+    .gate-form label.field-label{display:block;font-family:'Archivo',sans-serif;font-size:11px;font-weight:600;color:var(--taupe);text-transform:uppercase;letter-spacing:.1em;margin:16px 0 6px}
+    .gate-form input[type="text"],.gate-form input[type="email"]{width:100%;padding:12px;border:1px solid var(--line);border-radius:2px;font:15px 'Archivo',sans-serif;background:var(--paper);color:var(--ink)}
+    .gate-form input:focus{outline:none;border-color:var(--ink)}
+    .consent-box{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:var(--paper);padding:14px;margin:20px 0 10px;font-size:13px;color:var(--ink-soft)}
+    .consent-box input{margin-top:4px}
+    .purpose-note,.privacy-note{font-size:12.5px;color:var(--ink-soft)}
+    .purpose-note{margin:16px 0}
+    .privacy-note{text-align:center;margin-top:14px}
+    .privacy-note a{color:var(--ink);text-decoration:underline}
+    .form-error{display:none;color:#7b2f2f;font-size:13px;margin-top:12px}
+    .result-section{margin-bottom:34px}
+    .section-kicker{font-size:18px;margin:0 0 6px;text-transform:uppercase;letter-spacing:.02em}
+    .result-title{font-size:clamp(26px,4vw,34px);line-height:1.18;margin:0 0 6px}
+    .score{font-weight:700;margin-bottom:14px}
+    .result-copy{color:var(--ink-soft)}
+    .disclaimer{font-size:13px;color:var(--ink-soft);font-style:italic;border-top:1px solid var(--line);padding-top:12px}
+    .radiography{display:grid;gap:12px}
+    .area-row{display:grid;grid-template-columns:minmax(155px,1fr) 2fr 38px;gap:12px;align-items:center}
+    .area-name{font-size:13.5px}
+    .bar{height:8px;background:var(--bg-soft);overflow:hidden}
+    .bar-fill{height:100%;background:var(--ink)}
+    .area-score{font-size:13px;text-align:right}
+    .priority-card{background:var(--bg-soft);border-left:3px solid var(--ink);padding:20px}
+    .priority-name{font-family:'Fraunces',serif;font-size:23px;margin:0 0 16px}
+    .subhead{font-family:'Archivo',sans-serif;color:var(--taupe);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin:16px 0 4px}
+    .resources{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .resource-card{border:1px solid var(--line);background:var(--paper);padding:18px;display:flex;flex-direction:column}
+    .resource-number{font-size:12px;font-weight:700;color:var(--taupe);text-transform:uppercase}
+    .resource-title{font-family:'Fraunces',serif;font-size:18px;line-height:1.25;margin:7px 0}
+    .resource-desc{font-size:13px;color:var(--ink-soft);flex:1}
+    .resource-button{display:inline-block;margin-top:12px;padding:10px 13px;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:600;font-size:13px;text-align:center}
+    .resource-button.disabled{opacity:.48;pointer-events:none}
+    .closing{border-top:1px solid var(--line);padding-top:24px}
+    .principle{font-family:'Fraunces',serif;font-size:20px;margin:18px 0 2px}
+    .signoff{font-size:12.5px;color:var(--taupe)}
+    .cta-box{display:none;background:var(--ink);color:var(--paper);padding:32px 24px;text-align:center;margin-top:20px}
+    @media(max-width:640px){
+      .resources{grid-template-columns:1fr}
+      .area-row{grid-template-columns:1fr 1.6fr 34px;gap:8px}
+      #quizForm,#gateView,#resultView{padding-left:18px;padding-right:18px}
+      .progress-meta{padding-left:18px;padding-right:18px}
+    }
+
+/* PRUEBA LOCAL: portada editorial. No modifica el motor del test. */
+header.hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#11100e;
+  padding:64px 20px 48px;
+}
+header.hero::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  inset:0 0 0 auto;
+  width:49%;
+  background-image:url('radiografia_escritorio_preview.webp');
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  opacity:.95;
+}
+header.hero::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(90deg,#11100e 0%,#11100e 37%,rgba(17,16,14,.94) 51%,rgba(17,16,14,.45) 77%,rgba(17,16,14,.15) 100%);
+}
+.hero-inner{max-width:800px;position:relative}
+.hero .intro-note{
+  box-shadow:0 16px 35px rgba(0,0,0,.28);
+  background:linear-gradient(125deg,#f6ebd8,#ead8bb);
+  border-color:#e2cfaf;
+}
+@media(max-width:640px){
+  header.hero{padding:44px 20px 36px}
+  header.hero::before{width:76%;opacity:.55;background-position:45% center}
+  header.hero::after{background:linear-gradient(90deg,rgba(17,16,14,.98) 0%,rgba(17,16,14,.88) 58%,rgba(17,16,14,.60) 100%)}
+  .hero .intro-note{padding:19px 20px}
+}
+
+  </style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Andre Espitia · Crecimiento Digital</p>
+    <h1>Radiografía Digital de <em>tu Negocio</em></h1>
+    <p class="hero-sub">Responde 14 preguntas y descubre qué tan preparado está hoy tu negocio para utilizar lo digital como palanca de crecimiento.</p>
+    <div class="hero-meta">
+      <span>14 preguntas</span>
+      <span>Resultado inmediato</span>
+      <span>Primera lectura de 7 áreas</span>
+    </div>
+    <div class="intro-note">
+      <strong>Antes de empezar</strong>
+      <p>Responde pensando en cómo funciona tu negocio hoy, no en cómo te gustaría que funcionara. No hay respuestas buenas o malas. Cuanto más reflejen tu situación actual, más útil será la lectura que recibirás al final.</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="quiz-card">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="progressQuestion">0 de 14 respondidas</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <form id="quizForm">
+
+            <div class="level-group">
+                <div class="level-tag">01 · Fundamentos</div>
+                <fieldset><legend>1. ¿Puedes explicar fácilmente qué hace diferente a tu negocio de la competencia?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q1" value="2"> Sí, lo tengo muy claro</label>
+                        <label class="option"><input type="radio" name="q1" value="1"> Más o menos</label>
+                        <label class="option"><input type="radio" name="q1" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>2. ¿Tienes claro quiénes son los clientes a los que realmente quieres vender?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q2" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q2" value="1"> Tengo una idea</label>
+                        <label class="option"><input type="radio" name="q2" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">02 · Presencia digital</div>
+                <fieldset><legend>3. Si alguien busca tu negocio en Internet, ¿encuentra fácilmente información clara y actualizada?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q3" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q3" value="1"> Parcialmente</label>
+                        <label class="option"><input type="radio" name="q3" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>4. ¿Tus clientes pueden contactarte fácilmente por medios digitales como tu sitio web, redes sociales o WhatsApp?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q4" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q4" value="1"> Con algunas dificultades</label>
+                        <label class="option"><input type="radio" name="q4" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">03 · Confianza</div>
+                <fieldset><legend>5. Antes de comprarte, ¿un cliente puede encontrar opiniones, trabajos realizados, casos o experiencias de otros clientes?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q5" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q5" value="1"> Algunos</label>
+                        <label class="option"><input type="radio" name="q5" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>6. ¿Tu presencia digital muestra suficiente información para que alguien que no conoce tu negocio entienda qué haces y por qué confiar en ti?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q6" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q6" value="1"> Parcialmente</label>
+                        <label class="option"><input type="radio" name="q6" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">04 · Atracción</div>
+                <fieldset><legend>7. ¿Realizas de forma constante acciones para atraer nuevos clientes, como contenido, campañas, alianzas u otras iniciativas?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q7" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q7" value="1"> Algunas veces</label>
+                        <label class="option"><input type="radio" name="q7" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>8. ¿Las acciones que realizas para atraer clientes generan oportunidades comerciales de manera consistente?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q8" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q8" value="1"> Algunas veces</label>
+                        <label class="option"><input type="radio" name="q8" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">05 · Conversión</div>
+                <fieldset><legend>9. Cuando una persona muestra interés, ¿tienes un proceso definido para hacer seguimiento hasta la venta?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q9" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q9" value="1"> Parcialmente</label>
+                        <label class="option"><input type="radio" name="q9" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>10. ¿Sabes aproximadamente qué proporción de las personas interesadas termina convirtiéndose en cliente?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q10" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q10" value="1"> Tengo una idea</label>
+                        <label class="option"><input type="radio" name="q10" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">06 · Medición</div>
+                <fieldset><legend>11. ¿Revisas regularmente datos o resultados para tomar decisiones sobre ventas, clientes o crecimiento?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q11" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q11" value="1"> Algunas veces</label>
+                        <label class="option"><input type="radio" name="q11" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>12. ¿Sabes cuáles de tus acciones o canales están generando mejores resultados para tu negocio?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q12" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q12" value="1"> Tengo una idea</label>
+                        <label class="option"><input type="radio" name="q12" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="level-group">
+                <div class="level-tag">07 · Procesos y crecimiento</div>
+                <fieldset><legend>13. ¿Tienes procesos o herramientas que reduzcan tareas manuales y repetitivas en tu negocio?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q13" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q13" value="1"> Algunas</label>
+                        <label class="option"><input type="radio" name="q13" value="0"> No</label>
+                    </div>
+                </fieldset>
+                <fieldset><legend>14. Si tu negocio recibiera más clientes u oportunidades, ¿tus procesos actuales podrían manejar ese crecimiento sin generar problemas importantes?</legend>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q14" value="2"> Sí</label>
+                        <label class="option"><input type="radio" name="q14" value="1"> Parcialmente</label>
+                        <label class="option"><input type="radio" name="q14" value="0"> No</label>
+                    </div>
+                </fieldset>
+            </div>
+      <div class="submit-row">
+        <button type="submit" class="primary" id="submitBtn" disabled>Continuar para ver mi resultado</button>
+      </div>
+    </form>
+
+    <div id="gateView">
+      <h2 class="gate-title">Tu resultado está listo</h2>
+      <p class="gate-sub">Completa tus datos para ver tu radiografía digital y acceder a los recursos relacionados con tu resultado.</p>
+
+      <form id="gateForm" class="gate-form">
+        <label class="field-label" for="gateName">Nombre*</label>
+        <input type="text" id="gateName" autocomplete="name" required>
+
+        <label class="field-label" for="gateEmail">Correo electrónico*</label>
+        <input type="email" id="gateEmail" autocomplete="email" required>
+
+        <label class="field-label" for="gateCountry">País*</label>
+        <input type="text" id="gateCountry" autocomplete="country-name" required>
+
+        <p class="purpose-note">Utilizaremos la información que proporciones y tus respuestas para generar y entregarte tu resultado y los recursos relacionados, conservar un registro de tu participación y comprender de forma general cómo utilizan las personas esta Radiografía y qué necesidades aparecen.</p>
+
+        <label class="consent-box">
+          <input type="checkbox" id="marketingConsent">
+          <span>Quiero recibir ocasionalmente recursos, novedades y comunicaciones sobre servicios o lanzamientos de Andre Espitia · Crecimiento Digital. Esta opción es voluntaria y no es necesaria para ver mi resultado.</span>
+        </label>
+
+        <button type="submit" class="primary" id="unlockBtn">VER MI RESULTADO</button>
+        <p class="form-error" id="formError">No pudimos guardar tu participación. Inténtalo nuevamente.</p>
+        <p class="privacy-note">Al continuar, confirmas que has leído la <a id="privacyLink" href="#" target="_blank" rel="noopener">Política de privacidad</a>, donde puedes consultar cómo tratamos tus datos y cómo ejercer tus derechos.</p>
+      </form>
+    </div>
+
+    <div id="resultView">
+      <section class="result-section">
+        <p class="section-kicker">Tu resultado</p>
+        <h2 class="result-title" id="resultTitle"></h2>
+        <div class="score" id="resultScore"></div>
+        <div class="result-copy" id="resultMeaning"></div>
+        <p class="disclaimer">Esta es una primera lectura basada en tus respuestas. La Radiografía no reemplaza un análisis profundo de tu negocio.</p>
+      </section>
+
+      <section class="result-section">
+        <p class="section-kicker">Tu radiografía digital</p>
+        <p class="result-copy">Así se distribuyen tus respuestas en las 7 áreas evaluadas.</p>
+        <div class="radiography" id="radiography"></div>
+      </section>
+
+      <section class="result-section priority-card" id="prioritySection">
+        <p class="section-kicker" id="priorityKicker">Área prioritaria para fortalecer</p>
+        <h3 class="priority-name" id="priorityName"></h3>
+        <div class="subhead">Qué muestran tus respuestas</div>
+        <p id="priorityMeaning"></p>
+        <div class="subhead">Tu foco ahora</div>
+        <p id="priorityFocus"></p>
+      </section>
+
+      <section class="result-section" id="resourcesSection">
+        <p class="section-kicker">2 recursos para empezar</p>
+        <p class="result-copy">Seleccioné estos recursos porque están relacionados con el área prioritaria que aparece en tus respuestas.</p>
+        <div class="resources" id="resources"></div>
+      </section>
+
+      <section class="result-section closing">
+        <p class="section-kicker">Esta Radiografía es solo una primera lectura</p>
+        <p>La Radiografía permite observar señales generales sobre las 7 áreas evaluadas, pero no explica por sí sola por qué ocurre cada situación ni determina qué solución necesita un negocio.</p>
+        <p>Un análisis más profundo requiere comprender sus objetivos, clientes, oferta, ecosistema digital, proceso comercial, datos y procesos.</p>
+        <p class="principle">Primero el negocio. Después la herramienta.</p>
+        <p class="signoff">Andre Espitia · Crecimiento Digital</p>
+      </section>
+
+      <!-- CTA comercial reservado para una futura versión. Mantener oculto en V1. -->
+      <div class="cta-box" id="futureCommercialCTA">
+        <p>CTA comercial futuro.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztrHAGYzPhFeK2JopVfJjW-8TN6BpxkFn7cDwwJcX0OUcs4NloJYrN1b43dfDCi_Pz5Q/exec";
+
+// Política pública bilingüe incluida en el mismo sitio.
+const PRIVACY_POLICY_URL = "privacidad.html";
+
+// Recursos 01 y 02 conectados para la prueba de Fundamentos. Añadir los demás al publicarlos.
+const RESOURCE_URLS = {
+  "01": "https://drive.google.com/file/d/1UJheMJqjvya9i_y0GMcbwvtvZFy-7AWY/view?usp=sharing",
+  "02": "https://drive.google.com/file/d/12sbUyPkwDB9Bb6ehf9ke41RAZzekh6sf/view?usp=sharing", "03": "", "04": "", "05": "", "06": "", "07": "",
+  "08": "", "09": "", "10": "", "11": "", "12": "", "13": "", "14": ""
+};
+
+const STATE_COPY = {
+  bases: {
+    title: "Bases por construir",
+    text: [
+      "Tus respuestas muestran que todavía hay varias bases por desarrollar para aprovechar mejor lo digital en tu negocio. Esto puede incluir desde claridad sobre el cliente y la oferta hasta presencia, atracción, seguimiento, medición o procesos.",
+      "El objetivo ahora no es sumar más herramientas, sino identificar qué áreas necesitan fortalecerse primero."
+    ]
+  },
+  desarrollo: {
+    title: "En desarrollo",
+    text: [
+      "Tu negocio ya cuenta con algunos elementos para aprovechar lo digital, pero tus respuestas muestran diferencias entre las áreas evaluadas. Algunas pueden estar más desarrolladas mientras otras todavía necesitan fortalecerse.",
+      "Identificar esas brechas puede ayudarte a decidir dónde enfocar tus esfuerzos antes de sumar nuevas acciones o herramientas."
+    ]
+  },
+  consolidacion: {
+    title: "En consolidación",
+    text: [
+      "Tu negocio ya cuenta con varias bases para utilizar lo digital como apoyo al crecimiento. Aun así, tus respuestas muestran que existen áreas que pueden fortalecerse o conectarse mejor.",
+      "El siguiente paso es identificar dónde están esas brechas para priorizar acciones que tengan sentido para tu negocio."
+    ]
+  },
+  avanzada: {
+    title: "Preparación avanzada",
+    text: [
+      "Tus respuestas muestran una base digital bastante desarrollada en los aspectos evaluados por esta Radiografía. Esto significa que tu negocio cuenta con varios elementos que pueden ayudarle a utilizar lo digital como palanca de crecimiento.",
+      "Aun con una preparación alta, la radiografía puede mostrar áreas específicas que conviene seguir fortaleciendo."
+    ]
+  }
+};
+
+const AREA_COPY = {
+  fundamentos: {
+    label: "Fundamentos",
+    title: "Fortalece las bases de tu negocio",
+    meaning: "Tus respuestas muestran que todavía hay espacio para ganar claridad sobre a quién quieres vender y qué hace diferente a tu negocio. Fortalecer estas bases puede ayudarte a tomar mejores decisiones sobre qué comunicar, dónde estar y qué acciones digitales tienen sentido para tu negocio.",
+    focus: "Trabaja primero en definir con mayor claridad a quién quieres llegar y qué hace que tu oferta sea relevante para ese cliente.",
+    resources: [
+      {n:"01", title:"¿Quién es tu cliente ideal?", desc:"Para profundizar en quién quieres atraer, qué necesita, qué objeciones puede tener y qué influye en su decisión."},
+      {n:"02", title:"¿Qué debe tener tu oferta?", desc:"Para revisar qué recibe el cliente, qué valor obtiene y qué necesita saber para avanzar."}
+    ]
+  },
+  presencia: {
+    label: "Presencia digital",
+    title: "Haz que tu negocio sea fácil de encontrar y contactar",
+    meaning: "Tus respuestas indican que todavía hay espacio para fortalecer la forma en que las personas encuentran tu negocio, entienden la información disponible y pueden contactarte o dar el siguiente paso.",
+    focus: "Revisa primero que tu presencia digital sea clara, actualizada y facilite que una persona interesada pueda encontrarte y avanzar.",
+    resources: [
+      {n:"03", title:"Presencia digital: qué revisar primero y qué depende de tu negocio", desc:"Para revisar la base de tu presencia y decidir qué canales o elementos realmente tienen sentido."},
+      {n:"04", title:"Optimiza tu perfil de redes sociales para que te encuentren y entiendan", desc:"Para mejorar elementos como nombre, imagen, biografía, contacto y contenido destacado."}
+    ]
+  },
+  confianza: {
+    label: "Confianza",
+    title: "Convierte tu presencia digital en señales de confianza",
+    meaning: "Tus respuestas indican que todavía puedes hacer más visible la información y la evidencia que ayudan a una persona que no conoce tu negocio a entender qué haces y sentirse más segura al considerarte.",
+    focus: "Revisa qué señales de confianza encuentra hoy un posible cliente y haz más visibles elementos como trabajos realizados, opiniones, experiencia e información clara sobre tu negocio.",
+    resources: [
+      {n:"05", title:"Los 5 elementos de un perfil digital que genera confianza", desc:"Para revisar claridad, imágenes, respuesta, prueba social y consistencia."},
+      {n:"06", title:"Cómo conseguir y mostrar testimonios que generen confianza", desc:"Para solicitar opiniones de forma respetuosa, obtener autorización y utilizarlas en puntos relevantes de tu presencia digital."}
+    ]
+  },
+  atraccion: {
+    label: "Atracción",
+    title: "Haz que tus acciones digitales atraigan oportunidades con más intención",
+    meaning: "Tus respuestas indican que las acciones para atraer nuevos clientes todavía pueden ser poco constantes o no estar generando oportunidades comerciales de manera consistente.",
+    focus: "Dale un propósito claro a tus acciones de atracción y busca una frecuencia que puedas sostener, observando si esas acciones realmente generan interés y oportunidades para tu negocio.",
+    resources: [
+      {n:"07", title:"Cómo crear contenido que atrae clientes, no solo likes", desc:"Para estructurar contenido pensando en atracción, interés, deseo y acción."},
+      {n:"08", title:"Kit de contenido semanal: calendario + ganchos", desc:"Para convertir esa intención en una rutina de contenido más sencilla de ejecutar."}
+    ]
+  },
+  conversion: {
+    label: "Conversión",
+    title: "Convierte mejor el interés en oportunidades de venta",
+    meaning: "Tus respuestas indican que todavía hay espacio para organizar mejor el seguimiento de las personas interesadas y entender qué proporción termina convirtiéndose en cliente.",
+    focus: "Crea una forma sencilla de registrar y dar seguimiento a las oportunidades comerciales y empieza a observar cuántas avanzan hasta convertirse en clientes.",
+    resources: [
+      {n:"09", title:"Cuántos prospectos podrías necesitar para alcanzar tu meta de ventas", desc:"Para entender la relación entre prospectos, ventas y tasa de conversión."},
+      {n:"10", title:"Cómo hacer seguimiento a una persona interesada sin presionar", desc:"Para organizar el seguimiento de forma clara y respetuosa."}
+    ]
+  },
+  medicion: {
+    label: "Medición",
+    title: "Usa tus datos para entender qué funciona",
+    meaning: "Tus respuestas indican que todavía hay espacio para fortalecer la forma en que revisas los resultados de tu negocio y entiendes qué acciones o canales están generando mejores resultados.",
+    focus: "Empieza con unas pocas métricas relevantes y relaciónalas con las acciones que realizas para identificar qué mantener, qué ajustar y qué conviene revisar.",
+    resources: [
+      {n:"11", title:"Los 5 números que puedes revisar cada mes", desc:"Para empezar a observar métricas como ventas, ingresos, prospectos, conversión y ticket promedio."},
+      {n:"12", title:"Qué acciones digitales realmente están funcionando en tu negocio", desc:"Para comparar acciones y canales y tomar decisiones con mayor contexto."}
+    ]
+  },
+  procesos_crecimiento: {
+    label: "Procesos y crecimiento",
+    title: "Prepara tus procesos para manejar el crecimiento con mayor claridad",
+    meaning: "Tus respuestas indican que todavía puede haber tareas manuales o repetitivas que podrían organizarse mejor, y que tus procesos actuales pueden necesitar fortalecerse para responder a un aumento de clientes u oportunidades.",
+    focus: "Revisa primero cómo funciona hoy tu operación: qué tareas se repiten, dónde se concentra el trabajo y qué procesos podrían simplificarse, documentarse o prepararse mejor para manejar una mayor demanda.",
+    resources: [
+      {n:"13", title:"Cómo documentar un proceso para hacerlo más fácil de repetir y mejorar", desc:"Para convertir una tarea o proceso recurrente en pasos más claros y fáciles de revisar."},
+      {n:"14", title:"Qué tareas simplificar, delegar o automatizar en tu negocio", desc:"Para identificar dónde reducir trabajo manual y decidir qué conviene simplificar, delegar o apoyar con herramientas."}
+    ]
+  }
+};
+
+const AREA_ORDER = ["fundamentos","presencia","confianza","atraccion","conversion","medicion","procesos_crecimiento"];
+let resultData = null;
+
+function updateProgress(){
+  const answered = document.querySelectorAll('#quizForm input[type="radio"]:checked').length;
+  const percent = Math.round((answered / 14) * 100);
+  document.getElementById("progressFill").style.width = percent + "%";
+  document.getElementById("progressQuestion").textContent = answered + " de 14 respondidas";
+  document.getElementById("progressPercent").textContent = percent + "%";
+  document.getElementById("submitBtn").disabled = answered < 14;
+}
+
+function calculateLocally(respuestas){
+  const r = respuestas.map(Number);
+  const total = r.reduce((a,b)=>a+b,0);
+  const areas = {
+    fundamentos:r[0]+r[1],
+    presencia:r[2]+r[3],
+    confianza:r[4]+r[5],
+    atraccion:r[6]+r[7],
+    conversion:r[8]+r[9],
+    medicion:r[10]+r[11],
+    procesos_crecimiento:r[12]+r[13]
+  };
+  let stateKey = total <= 7 ? "bases" : total <= 14 ? "desarrollo" : total <= 21 ? "consolidacion" : "avanzada";
+  const min = Math.min(...AREA_ORDER.map(k=>areas[k]));
+  const priority = AREA_ORDER.find(k=>areas[k]===min);
+  return {total, areas, stateKey, priority};
+}
+
+function stateKeyFromTitle(title){
+  if(title==="Bases por construir") return "bases";
+  if(title==="En desarrollo") return "desarrollo";
+  if(title==="En consolidación") return "consolidacion";
+  return "avanzada";
+}
+
+function renderResult(serverResult){
+  const stateKey = stateKeyFromTitle(serverResult.estadoGeneral);
+  const state = STATE_COPY[stateKey];
+  const area = AREA_COPY[serverResult.areaPrioritaria];
+
+  document.getElementById("resultTitle").textContent = state.title;
+  document.getElementById("resultScore").textContent = serverResult.total + " / 28 puntos";
+  document.getElementById("resultMeaning").innerHTML = (serverResult.total === 28
+    ? [
+        state.text[0],
+        "En esta primera lectura, las 7 áreas evaluadas alcanzan la puntuación máxima. Esto no significa que el negocio no tenga oportunidades de mejora, sino que no aparece una brecha prioritaria dentro de los aspectos evaluados por esta Radiografía."
+      ]
+    : state.text
+  ).map(t=>"<p>"+t+"</p>").join("");
+
+  const radiography = document.getElementById("radiography");
+  radiography.innerHTML = "";
+  AREA_ORDER.forEach(key=>{
+    const score = serverResult.areas[key];
+    const row = document.createElement("div");
+    row.className = "area-row";
+    row.innerHTML = `
+      <div class="area-name">${AREA_COPY[key].label}</div>
+      <div class="bar"><div class="bar-fill" style="width:${(score/4)*100}%"></div></div>
+      <div class="area-score">${score}/4</div>`;
+    radiography.appendChild(row);
+  });
+
+  const prioritySection = document.getElementById("prioritySection");
+  const resourcesSection = document.getElementById("resourcesSection");
+  const resources = document.getElementById("resources");
+
+  // Excepción V1 aprobada: con 28/28 no existe una brecha prioritaria.
+  if(serverResult.total === 28){
+    document.getElementById("priorityKicker").textContent = "No aparece una brecha prioritaria";
+    document.getElementById("priorityName").textContent = "Tus respuestas muestran una base sólida en las 7 áreas evaluadas";
+    document.getElementById("priorityMeaning").textContent = "En esta Radiografía todas las áreas alcanzan la puntuación máxima. Por eso, con la información disponible, no aparece una brecha específica que deba priorizarse sobre las demás.";
+    document.getElementById("priorityFocus").textContent = "Más que sumar herramientas por sumar, el siguiente paso puede ser revisar cómo estas bases se conectan con los objetivos actuales de tu negocio y dónde existen oportunidades concretas de optimización o crecimiento.";
+    resources.innerHTML = "";
+    resourcesSection.style.display = "none";
+  }else{
+    document.getElementById("priorityKicker").textContent = "Área prioritaria para fortalecer";
+    document.getElementById("priorityName").textContent = area.title;
+    document.getElementById("priorityMeaning").textContent = area.meaning;
+    document.getElementById("priorityFocus").textContent = area.focus;
+    resourcesSection.style.display = "block";
+    resources.innerHTML = "";
+    area.resources.forEach(res=>{
+      const url = RESOURCE_URLS[res.n];
+      const card = document.createElement("article");
+      card.className = "resource-card";
+      card.innerHTML = `
+        <div class="resource-number">${res.n} · ${area.label}</div>
+        <div class="resource-title">${res.title}</div>
+        <div class="resource-desc">${res.desc}</div>
+        <a class="resource-button ${url ? "" : "disabled"}" href="${url || "#"}" ${url ? 'target="_blank" rel="noopener"' : 'aria-disabled="true"'}>${url ? "Ver recurso" : "Recurso en preparación"}</a>`;
+      resources.appendChild(card);
+    });
+  }
+
+  document.getElementById("quizForm").style.display = "none";
+  document.getElementById("gateView").style.display = "none";
+  document.getElementById("resultView").style.display = "block";
+  document.getElementById("resultView").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+document.querySelectorAll('#quizForm input[type="radio"]').forEach(radio=>{
+  radio.addEventListener("change",()=>{
+    const parent=radio.closest(".option");
+    parent.parentElement.querySelectorAll(".option").forEach(opt=>opt.classList.remove("checked"));
+    parent.classList.add("checked");
+    updateProgress();
+  });
+});
+
+document.getElementById("quizForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const respuestas=[];
+  for(let i=1;i<=14;i++){
+    const selected=document.querySelector(`input[name="q${i}"]:checked`);
+    if(!selected) return;
+    respuestas.push(Number(selected.value));
+  }
+  resultData={respuestas, local:calculateLocally(respuestas)};
+  document.getElementById("quizForm").style.display="none";
+  document.getElementById("gateView").style.display="block";
+  document.getElementById("gateView").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+document.getElementById("privacyLink").href = PRIVACY_POLICY_URL;
+
+document.getElementById("gateForm").addEventListener("submit",async function(e){
+  e.preventDefault();
+
+  const error = document.getElementById("formError");
+  error.style.display="none";
+
+  const unlockBtn=document.getElementById("unlockBtn");
+  unlockBtn.disabled=true;
+  unlockBtn.textContent="GUARDANDO...";
+
+  const payload={
+    nombre:document.getElementById("gateName").value.trim(),
+    email:document.getElementById("gateEmail").value.trim(),
+    pais:document.getElementById("gateCountry").value.trim(),
+    idioma:"ES",
+    respuestas:resultData.respuestas,
+    marketingConsent:document.getElementById("marketingConsent").checked
+  };
+
+  try{
+    // text/plain evita el preflight CORS en el envío desde GitHub Pages.
+    // Apps Script devuelve JSON; si el navegador no permite leer la respuesta
+    // por CORS, hacemos una verificación local para mostrar el resultado,
+    // pero el guardado debe confirmarse en la Sheet durante las pruebas.
+    const response = await fetch(APPS_SCRIPT_URL,{
+      method:"POST",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(payload)
+    });
+
+    let serverResult=null;
+    try{
+      const data=await response.json();
+      if(data.ok) serverResult=data.resultado;
+      else throw new Error(data.error || "Error al guardar");
+    }catch(parseError){
+      // Fallback de visualización. No sustituye la prueba de guardado en Sheets.
+      const local=resultData.local;
+      serverResult={
+        total:local.total,
+        areas:local.areas,
+        estadoGeneral:STATE_COPY[local.stateKey].title,
+        areaPrioritaria:local.priority
+      };
+    }
+
+    renderResult(serverResult);
+  }catch(err){
+    error.textContent="No pudimos guardar tu participación. Revisa tu conexión e inténtalo nuevamente.";
+    error.style.display="block";
+  }finally{
+    unlockBtn.disabled=false;
+    unlockBtn.textContent="VER MI RESULTADO";
+  }
+});
+
+updateProgress();
+</script>
+</body>
+</html>
